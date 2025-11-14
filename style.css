@@ -85,7 +85,7 @@ main {
   pointer-events: none;
 }
 
-/* Default circle styling â€“ colour is set via CSS variables */
+/* Default circle styling â€?colour is set via CSS variables */
 #map circle {
   pointer-events: auto;
   stroke: white;
@@ -118,9 +118,10 @@ main {
   padding: 0.4em 0.6em;
   text-align: center;
   font-size: 0.8em;
-  color: #fff;
+  color: #000;
+  background: var(--color, rgba(255, 255, 255, 0.75));
   /* Add a tiny gap between swatches using border; removed border on first */
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .legend > div:first-child {
