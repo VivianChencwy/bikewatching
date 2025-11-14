@@ -1,0 +1,121 @@
+/*
+ * Global and map-specific styles for the Bluebikes traffic visualization.
+ *
+ * This stylesheet provides layout, typography, and colour rules for the
+ * interactive map. It also defines CSS variables for the traffic flow
+ * colour scale and applies them to both map circles and legend swatches.
+ */
+
+/* Reset and base layout */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
+  /* Use flexbox to arrange header and main vertically */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header layout */
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+  padding: 1em;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+}
+
+header .time-label {
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+#selected-time {
+  font-weight: bold;
+}
+
+#any-time {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Ensure the legend doesn’t push the map off screen */
+  overflow: hidden;
+}
+
+/* Map container fills the available space */
+#map {
+  position: relative;
+  flex: 1;
+}
+
+/* Overlay SVG for D3 circles */
+#map svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Default circle styling – colour is set via CSS variables */
+#map circle {
+  pointer-events: auto;
+  stroke: white;
+  stroke-width: 1px;
+  fill-opacity: 0.6;
+  fill: var(--color);
+  transition: r 0.1s ease;
+}
+
+/* Colour variables for departures and arrivals; can be customised */
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+/* Use colour-mix with the departure ratio stored on each element */
+#map circle,
+.legend > div {
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* Legend styling */
+.legend {
+  display: flex;
+  margin: 0.5em 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 300px;
+}
+
+.legend > div {
+  flex: 1;
+  padding: 0.4em 0.6em;
+  text-align: center;
+  font-size: 0.8em;
+  color: #fff;
+  /* Add a tiny gap between swatches using border; removed border on first */
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legend > div:first-child {
+  border-left: none;
+}
