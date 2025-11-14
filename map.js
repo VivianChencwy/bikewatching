@@ -121,33 +121,50 @@ map.on('load', async () => {
 
   // Fetch bike lane data first, then add to map
   try {
+    console.log('Loading Boston bike lanes...');
     const bostonLanes = await d3.json(bostonLanesUrl);
-    map.addSource('boston-lanes', { type: 'geojson', data: bostonLanes });
-    map.addLayer({
-      id: 'boston-lanes',
-      type: 'line',
-      source: 'boston-lanes',
-      paint: {
-        'line-color': '#00cc77',
-        'line-width': 2,
-        'line-opacity': 0.8,
-      },
-    });
+    console.log('Boston lanes loaded:', bostonLanes?.features?.length || 0, 'features');
+    
+    if (bostonLanes && bostonLanes.features && bostonLanes.features.length > 0) {
+      map.addSource('boston-lanes', { type: 'geojson', data: bostonLanes });
+      map.addLayer({
+        id: 'boston-lanes',
+        type: 'line',
+        source: 'boston-lanes',
+        paint: {
+          'line-color': '#00cc77',
+          'line-width': 2,
+          'line-opacity': 0.8,
+        },
+      });
+      console.log('Boston bike lanes layer added successfully');
+    } else {
+      console.warn('Boston lanes data is empty or invalid');
+    }
 
+    console.log('Loading Cambridge bike lanes...');
     const cambridgeLanes = await d3.json(cambridgeLanesUrl);
-    map.addSource('cambridge-lanes', { type: 'geojson', data: cambridgeLanes });
-    map.addLayer({
-      id: 'cambridge-lanes',
-      type: 'line',
-      source: 'cambridge-lanes',
-      paint: {
-        'line-color': '#00cc77',
-        'line-width': 2,
-        'line-opacity': 0.8,
-      },
-    });
+    console.log('Cambridge lanes loaded:', cambridgeLanes?.features?.length || 0, 'features');
+    
+    if (cambridgeLanes && cambridgeLanes.features && cambridgeLanes.features.length > 0) {
+      map.addSource('cambridge-lanes', { type: 'geojson', data: cambridgeLanes });
+      map.addLayer({
+        id: 'cambridge-lanes',
+        type: 'line',
+        source: 'cambridge-lanes',
+        paint: {
+          'line-color': '#00cc77',
+          'line-width': 2,
+          'line-opacity': 0.8,
+        },
+      });
+      console.log('Cambridge bike lanes layer added successfully');
+    } else {
+      console.warn('Cambridge lanes data is empty or invalid');
+    }
   } catch (error) {
     console.error('Error loading bike lanes:', error);
+    console.error('Error details:', error.message);
   }
 
   // 2. Fetch station information. The Bluebikes GBFS feed provides station

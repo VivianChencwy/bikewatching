@@ -59,6 +59,21 @@ main {
   flex: 1;
 }
 
+/* Legend positioned absolutely in bottom-right corner of map */
+.legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 300px;
+  margin: 0;
+}
+
 /* Overlay SVG for D3 circles */
 #map svg {
   position: absolute;
@@ -95,16 +110,7 @@ main {
   );
 }
 
-/* Legend styling */
-.legend {
-  display: flex;
-  margin: 0.5em 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  width: 300px;
-}
+/* Legend styling - removed duplicate, now defined above */
 
 .legend > div {
   flex: 1;

@@ -39,12 +39,13 @@
     </header>
     <main>
       <!-- Container for the Mapbox map -->
-      <div id="map"></div>
-      <!-- Legend explaining circle colour encoding -->
-      <div class="legend">
-        <div style="--departure-ratio: 1">More departures</div>
-        <div style="--departure-ratio: 0.5">Balanced</div>
-        <div style="--departure-ratio: 0">More arrivals</div>
+      <div id="map">
+        <!-- Legend explaining circle colour encoding - positioned absolutely over the map -->
+        <div class="legend">
+          <div style="--departure-ratio: 1">More departures</div>
+          <div style="--departure-ratio: 0.5">Balanced</div>
+          <div style="--departure-ratio: 0">More arrivals</div>
+        </div>
       </div>
     </main>
   </body>
