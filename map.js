@@ -119,28 +119,36 @@ map.on('load', async () => {
   const cambridgeLanesUrl =
     'https://opendata.arcgis.com/datasets/0bf450426b724b6a89fae33efa709a14_0.geojson';
 
-  map.addSource('boston-lanes', { type: 'geojson', data: bostonLanesUrl });
-  map.addLayer({
-    id: 'boston-lanes',
-    type: 'line',
-    source: 'boston-lanes',
-    paint: {
-      'line-color': '#00cc77',
-      'line-width': 2,
-      'line-opacity': 0.8,
-    },
-  });
-  map.addSource('cambridge-lanes', { type: 'geojson', data: cambridgeLanesUrl });
-  map.addLayer({
-    id: 'cambridge-lanes',
-    type: 'line',
-    source: 'cambridge-lanes',
-    paint: {
-      'line-color': '#00cc77',
-      'line-width': 2,
-      'line-opacity': 0.8,
-    },
-  });
+  // Fetch bike lane data first, then add to map
+  try {
+    const bostonLanes = await d3.json(bostonLanesUrl);
+    map.addSource('boston-lanes', { type: 'geojson', data: bostonLanes });
+    map.addLayer({
+      id: 'boston-lanes',
+      type: 'line',
+      source: 'boston-lanes',
+      paint: {
+        'line-color': '#00cc77',
+        'line-width': 2,
+        'line-opacity': 0.8,
+      },
+    });
+
+    const cambridgeLanes = await d3.json(cambridgeLanesUrl);
+    map.addSource('cambridge-lanes', { type: 'geojson', data: cambridgeLanes });
+    map.addLayer({
+      id: 'cambridge-lanes',
+      type: 'line',
+      source: 'cambridge-lanes',
+      paint: {
+        'line-color': '#00cc77',
+        'line-width': 2,
+        'line-opacity': 0.8,
+      },
+    });
+  } catch (error) {
+    console.error('Error loading bike lanes:', error);
+  }
 
   // 2. Fetch station information. The Bluebikes GBFS feed provides station
   // metadata including name, short_name (ID), and geographic coordinates. We
