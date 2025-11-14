@@ -51,6 +51,7 @@ main {
   flex-direction: column;
   /* Ensure the legend doesn’t push the map off screen */
   overflow: hidden;
+  position: relative;
 }
 
 /* Map container fills the available space */

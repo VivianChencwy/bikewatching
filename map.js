@@ -115,9 +115,9 @@ map.on('load', async () => {
   // ensures each dataset can be styled independently. The colour and width
   // values here can be adjusted to your taste.
   const bostonLanesUrl =
-    'https://opendata.arcgis.com/datasets/47783c53561b40f3a7221f7febc8ab3a_0.geojson';
+    'https://bostonopendata-boston.opendata.arcgis.com/datasets/boston::existing-bike-network-2022.geojson?outSR=%7B%22latestWkid%22%3A3857%2C%22wkid%22%3A102100%7D';
   const cambridgeLanesUrl =
-    'https://opendata.arcgis.com/datasets/0bf450426b724b6a89fae33efa709a14_0.geojson';
+    'https://raw.githubusercontent.com/cambridgegis/cambridgegis_data/main/Recreation/Bike_Facilities/RECREATION_BikeFacilities.geojson';
 
   // Fetch bike lane data first, then add to map
   try {
