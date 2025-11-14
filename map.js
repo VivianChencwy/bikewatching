@@ -17,7 +17,7 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7/+esm';
 // to any public repository.
 // Set your Mapbox token. This has been replaced with the default public token
 // from the authenticated Mapbox account. Keep this private in production!
-mapboxgl.accessToken = 'pk.eyJ1Ijoidml2aWFuY2hlbmN3eSIsImEiOiJjbWh6N3IwMGcwYXU0Mmtwd250ano3NzVzIn0.eTGrXa7s_mwcEr6AJfX9_g';
+mapboxgl.accessToken = 'pk.eyJ1Ijoidml2aWFuY2hlbmN3eSIsImEiOiJjbWh6NnRqOG0wNmd5MmlweTQxaWQybjJoIn0.bgKO2pL-uOGAK-unettFXQ';
 
 // Initialize the Mapbox map once the page loads. We choose the Boston/Cambridge
 // area as the centre and an appropriate zoom range. Feel free to adjust the
